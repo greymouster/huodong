@@ -1,0 +1,139 @@
+<include file="Public:header" />
+
+<title>{$activity[cx][0]['a_Subject']}_天道教育</title>
+<meta name="keywords" content="{$activity[cx][0]['a_Keyword']},{$activity[cx][0]['a_Subject']}"/>
+<meta name="description" content="{$activity[cx][0]['a_Summary']}" />
+</head>
+<body> 
+	<!--加载提示-->
+	<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/loading.js"></script>
+	<!--头部左上-->  
+	<div class="header xq_header">
+	    <a href="{$Think.config.URL_ROOT}/tdhd/" class="back"></a>
+		<h2>活动</h2>
+		<a href="tel:400-012-0038" class="header-navigation hhh phs"><i class="phoness fl"></i></a>	
+	    <a href="javascript:;" class="header-navigation show-navigation hhh hhhBtn"><i class="fa fa-share-alt show-navigations"></i></a>
+	</div>
+	<div class="header-clear"></div>
+	<!--banner-->
+	<div class="slider-container clearfix">
+	<div class=" homepage-slider1" data-snap-ignore="true">
+		<div class="mainBox plr">
+		    <if condition = "$activity[cx][0][a_ThumbAddress] neq '' and $activity[cx][0][a_ThumbAddress] neq ' '">
+			<div>
+					<a href="javascript:;" target="_self"><img src="{$activity[cx][0][a_ThumbAddress]}" class="responsive-image" alt="{$activity[cx][0]['a_Subject']}" style="margin-bottom:0;"></a>
+			</div>
+			</if>
+			<div class="xq_1 xq_11">   
+				<div class="content-heading" style="width:100%;margin-bottom:0;">
+					<h3>
+						<a href="javascript:;" target="_self">{$activity[cx][0]['a_Subject']}</a>
+					</h3>
+					<p> {$activity[cx][0]['a_Keyword']} </p>
+				</div>
+
+				<div class="content">
+					<div class="allTxt1">
+					<div class="container no-bottom dIcon dIcons ddIcons">
+					    <if condition = "$activity[map][0]['Name'] neq ''">
+						<dl class="plr">
+							<dt class="thumb-left d2"><img src="{$Think.config.URL_ROOT}/Public/images/dIcon_01.png" alt="" /></dt>
+							<dd class="dsss dssss">
+								<strong>{$activity[map][0]['Name']}</strong>
+								 <p>{$activity[map][0]['Address']}</p>
+							</dd>
+						</dl>
+						</if>
+						<dl class="plr">
+							<dt class="thumb-left d2"><img src="{$Think.config.URL_ROOT}/Public/images/dIcon_03.png" alt="" /></dt>
+							<dd class="dsss dssss">
+							     <if condition = "$flag neq 'same'">
+								 <strong>{$activity[time][0]['StartTime']}-{$activity[time][0]['EndTime']}</strong>
+								 <else/>
+								 <strong>{$activity[time][0]['StartTime']}</strong>
+								 </if>
+								 <p class="lastP p_add"> <span class="time">{$activity[time][0]['Remark']}</span></p>
+							</dd>
+						</dl>
+					   </div>
+					</div>
+				</div>
+				<div class="txt_11 mt20 mb20 plr">
+					<p>{$activity['cx'][0]['a_Content']}</p>
+				</div>
+
+			</div>
+		</div>
+		</div>
+		</div>
+
+	<!-- 分享 -->
+	<div class="share">
+		<div class="shareIcon">
+			<div class="d_box">
+				<div class="bdsharebuttonbox">
+						<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"><p>新浪微博</p></a>
+						<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"><p>QQ空间</p></a>
+						<a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"><p>QQ好友</p></a>
+					</div>
+				<script>
+					window._bd_share_config={
+						"common":{
+							"bdSnsKey":{},
+							"bdText":"",
+							"bdMini":"2",
+							"bdMiniList":false,
+							"bdPic":"",
+							"bdStyle":"1",
+							"bdSize":"32"
+						},
+						"share":{
+							"bdSize":32
+						}
+					};
+					with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+			</div>
+		</div>
+	</div>
+	<div class="menu-wrapper-background"></div>
+	<div class="header-clears" style="height:98px"></div>
+	<!--  底部-->
+	<!--
+	<a class="phone" id="phone" href="tel:400-012-0038">
+		<p>400-012-0038 电话咨询</p>
+	</a>
+	-->
+	<include file="Public:details_footer" />
+<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/zepto.js"></script>
+<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/framework.plugins.js"></script>
+<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/custom.js"></script>
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?9cbc6afe6436ce82c91f48d408a143e3";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

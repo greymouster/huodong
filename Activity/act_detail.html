@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>{$val['act_name']}_{$tdk['title']}</title>
+    <meta name="keywords" content="{$tdk['keywords']}"/>
+    <meta name="description" content="{$tdk['description']}" />
+
+    <link href="__PUBLIC__/styles/style.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/swipebox.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/huodongindex.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/styles/styleXi.css" rel="stylesheet" type="text/css" />
+	<link href="__PUBLIC__/ucenter/plugins/layer/need/layer.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="__PUBLIC__/ucenter/plugins/layer/layer.js"></script>
+
+</head>
+<body>
+
+<!--右上弹层内容-->
+<!--头部左上-->
+<div class="header clearfix">
+    <a href="javascript:;" onclick="window.history.go(-1);" class="header-navigation show-navigation"><i class="bags"></i></a>
+    <h2 class="first">活动详情</h2>
+    <!--<a href="#" class="header-navigation hhh hhhs phoneNums" ><img src="__PUBLIC__/images/huodong/images/ht.png" style="width: 70%; margin-top: 0.6em;"> </a>-->
+    <if condition="$Think.session.user_id neq '' ">
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" ><img src="{$Think.config.URL_ROOT}/Public/images/denglu.png" style="height:17px; position: absolute;right: 15px;top: 13px;"/></a>
+        <else />
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" style="margin:10px 5px;color:white;">登录/注册</a>
+    </if>
+</div>
+<div class="h43"></div>
+<!--banner-->
+	   <div class="msBox msBoxLast">
+        <div class="content-heading pb0">
+            <img src="{$val['act_file']}" class="responsive-image">
+            <h3><a href="javascript:;" >{$val['act_name']}<i style=" float: right; color: #666; font-size: 1.2em;display:none;">&gt;</i></a></h3>
+        </div>
+        <div class="content content_indexx">
+            <div class="allTxt1">
+                <div class="container no-bottom dIcon dIcons">
+                    <dl>
+                        <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_01.png" alt="" /></dt>
+                        <dd class="dsss">
+                            <p class="p_add">{$val['act_start_date']}-{$val['act_end_date']} 每天 {$val['act_start_time']}-{$val['act_end_time']}</p>
+						</dd>
+						<!--<if condition="$val.act_time_status eq 0">
+							<dd class="dsss">
+								<p class="p_add">{$val.act_start_date} {$val.act_start_time}</p>
+							</dd>
+							</if>
+							<if condition="$val.act_time_status eq 1">
+							<dd class="dsss">
+								<p class="p_add">{$val.act_start_date}-{$val.act_end_date} 每天 {$val.act_start_time}-{$val.act_end_time}</p>
+							</dd>
+							</if>
+							<if condition="$val.act_time_status eq 2">
+							<dd class="dsss">
+								<p class="p_add">{$val.act_start_date}-{$val.act_end_date} {$val.act_week}  {$val.act_start_time}-{$val.act_end_time}</p>
+							</dd>
+					    </if>-->
+                    </dl>
+                    <dl>
+                        <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_02.png" alt="" /></dt>
+                        <dd class="dsss">
+                            <if condition="$val['act_cost'] eq 0">
+                                <p class="lastP p_add"><span class="time">免费</span></p>
+                                <else />
+                                <p class="lastP p_add"><span class="time" style="color:black;">{$val['act_cost']}</span></p>
+                            </if>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="thumb-left d2"><img src="__PUBLIC__/images/huodong/images/dIcon_03.png" alt="" /></dt>
+                        <dd class="bdnone">
+                            <strong>{$val['place_name']}</strong>
+                            <p class="lastP p_add">{$val['spec_address']}</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+<!--活动详情-->
+<div class="xq">
+    <div class="xq_con">
+        <div class="nei">
+            <address style="width:96%;text-align:left;">活动详情</address>
+			<!--<address class="address2">如何参加</address>
+            <article>SAT改革详解暨改革背景下美国本科申请趋势解读会</article>-->
+            <!--<ul>-->
+                <!--<li><i class="dian"></i>直面讲师，用心对话;</li>-->
+                <!--<li><i class="dian"></i>这不是一场讲座，而是一场深度探讨的交流会;</li>-->
+                <!--<li><i class="dian"></i>这是梦开始的地方。</li>-->
+            <!--</ul>-->
+			<div style="clear:both;"></div>
+            <div class="act_desc">{$val.act_desc}</div>
+			<!--<div class="act_how_part" style="display:none;">{$val.act_how_part}</div>-->
+        </div>
+        <!--<p class="p">SAT名师：</p>
+        <div class="mshi">
+            <article><img src="__PUBLIC__/images/huodong/images/to.png"> 常志诚(Willey.Chang);</article>
+            <p><i>【主讲课程】</i>SAT数学/SAT写作<br>
+                <i>【顾问简介】</i>天道教学总监，中国人民大学毕业，英语专业八级；ETS认证教师，京城知名SAT教师，5年SAT教学经验;专注于SAT写作的教学教法研究，学生遍布美国常青藤大学，2010年教授学生王同学是北京市当年唯一被哈佛大学录取的优秀学子；著有《SAT全真词汇大全》、《百分百SAT写作例子集》等畅销参考书。</p>
+        </div>
+        <div class="mshi">
+            <article><img src="__PUBLIC__/images/huodong/images/to.png"> 王一冰(Norman.Wang)</article>
+            <p><i>【主讲课程】</i>SAT阅读<br>
+                <i>【顾问简介】</i>SAT教学组长，英语语言文学硕士，英语专业八级；曾任大学英语教师，教授英语专业学生;5年以上出国考试培训经验，3年SAT教学经验，帮助数百名学生提高了考试成绩，成绩提高的同时，更帮助学生养成良好的学习习惯并激发学生攻克SAT阅读的信心。</p>
+        </div>
+        <div class="mshi">
+            <article><img src="__PUBLIC__/images/huodong/images/to.png"> 洪南竹(Zoe.Hong)</article>
+            <p><i>【主讲课程】</i>SAT语法<br>
+                <i>【顾问简介】</i>英语硕士，专业八级，5年英语教学经验。对英语知识、中英思维、语言习惯及中国学生学英语的弊端症结有深入研究。在多年教学实践中，善于准确定位学生语言学习薄弱点，并制定针对性辅导方案，快速提高英语实力及考试成绩。</p>
+        </div>
+        <p class="p">资深顾问：</p>
+        <div class="mshi">
+            <article><img src="__PUBLIC__/images/huodong/images/to.png"> Max Rozycki</article>
+            <p><i>【主攻方向】</i>致力于欧美名校申请<br>
+                <i>【顾问简介】</i>天道美籍顾问。毕业于美国历史悠久的名校威廉玛丽学院，荣获经济学和中文双学士学位。在校期间即开始致力于远东经济发展研究，对中美经济有独特见解、分析。现服务于教育行业，熟知中国学生特性。尤其擅长金融、经济、文商类名校的申请。</p>
+        </div>
+        <div class="mshi">
+            <article><img src="__PUBLIC__/images/huodong/images/to.png"> 韦历(Alex.Wei)</article>
+            <p><i>【主攻方向】</i>致力于本科名校申请<br>
+                <i>【顾问简介】</i>毕业于美国伊利诺伊理工大学，人力资源硕士学位。在美留学4年，就读期间曾游历美国东西岸各大城市，熟悉美国教育体系和环境。毕业后参与过留学咨询公司的创立。擅长分析申请人的特点，深入挖掘其相关背景资源，尤其擅长指导留学生制定适当的留学目标和求职目标。</p>
+        </div>-->
+    </div>
+</div>
+<!--bottom-->
+<div class="xq_foot">
+    <p class="tit">天道教育全面服务保障</p>
+    <dl>
+        <dt><img src="__PUBLIC__/images/huodong/images/h5.png"> </dt>
+        <dd>全天候咨询服务</dd>
+    </dl>
+    <dl>
+        <dt><img src="__PUBLIC__/images/huodong/images/h6.png"> </dt>
+        <dd>全天候咨询服务</dd>
+    </dl>
+    <dl>
+        <dt><img src="__PUBLIC__/images/huodong/images/h7.png"> </dt>
+        <dd>全天候咨询服务</dd>
+    </dl>
+</div>
+<!--footer-->
+<div class="xq_bottm">
+    <a class="phone1" style="background:#fca65b; height:43px; text-align:center; font-size:1.4em; display:block " href="tel:400-012-0038">
+        <img style="display:inline;width:35px;height:35px;" src="http://m.tiandaoedu.com/Public/images/phonegb.gif">
+        <span style="color:#fff;line-height:40px; position:relative;top:-7px;display:inline">咨询电话：400-012-0038</span>
+    </a>
+	<if condition="$style neq 1">
+    <a  href="javascript:;" class="sc" data-id="{$val.act_id}"><img src="__PUBLIC__/images/huodong/images/xing.png"><span>收藏</span></a>
+	<else/>
+	<a  href="javascript:;" class="sc" data-id="{$val.act_id}"><img src="__PUBLIC__/images/huodong/images/xing02.png"><span>已收藏</span></a>
+	</if>
+	<if condition="$bm neq 1">
+	<a href="{:U('Activity/act_bm',array('act_id'=>$val['act_id']))}" class="bm">报名</a>
+	<else />
+	<a href="javascript:;" class="bm">报名成功</a>
+	</if>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="{$Think.config.URL_ROOT}/Public/scripts/jquery-1.8.3.min.js"></script>
+
+<script>
+$(function(){
+    $(".sc").click(function(){
+	    var act_id = $(this).attr('data-id');
+		$.ajax({
+		    url : "{:U('Activity/collectAct')}",
+		    data: {actId:act_id},
+		    dataType: "json",
+            type: "POST",
+		    success : function(data){
+		        if(data.status == -1){
+				   window.location.href="__ROOT__/u/dl.html";
+				}
+				if(data.status == -2){
+				    layer.open({
+					    content: data.msg,
+                        time: 2,
+                        skin: 'msg'
+					});
+				}
+				if(data.status == 1){
+				    layer.open({
+				        content: data.msg,
+						time : 2,
+						skin : 'msg'
+				    })
+					$(".sc").children('img').attr('src','__PUBLIC__/images/huodong/images/xing02.png');
+					$(".sc").children('span').text("已收藏");
+				}
+		    }
+		   
+		});
+	});
+
+})
+
+</script>

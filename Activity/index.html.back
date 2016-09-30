@@ -1,0 +1,128 @@
+<include file="Public:header1_1" />
+<title>{$tdk['title']}</title>
+<meta name="keywords" content="{$tdk['keywords']}"/>
+<meta name="description" content="{$tdk['description']}" />
+<link href="{$Think.config.URL_ROOT}/Public/styles/style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{$Think.config.URL_ROOT}/Public/styles/huodong.css"/>
+</head>
+<body> 
+
+	<!--头部左上-->  
+	<div class="header clearfix">
+	    <a href="{$Think.config.URL_ROOT}/"><i class="fa"></i></a> 
+		<h2>活动</h2>
+		<!--<a href="tel:400-012-0038" class="a_r a_rs a_rssss">400-012-0038</a>-->
+		<if condition="$Think.session.user_id neq '' ">
+		<a href="{$Think.config.URL_ROOT}/u/dl.html" ><img src="{$Think.config.URL_ROOT}/Public/images/denglu.png" style="height:17px; position: absolute;right: 15px;top: 13px;"/></a>
+        <else />
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" style="margin:10px 5px;color:white;">登录/注册</a>
+        </if>	
+			
+	</div>
+	<div class="h43"></div>
+	<!-- 正文 -->
+	<div class="msBox xq_msBox hdBox">
+	 <if condition = "$ad[0]['imgUrl'] neq ''">
+		<div class="content-heading pt0">
+		    <a href="{$ad[0]['url']}"><img src="{$ad[0]['imgUrl']}" alt="{$ad[0]['alt']}"></a>
+		</div>   
+	 </if>
+		<div class="content xhx_content">
+			<div class="tt mb10">
+			    
+				<h2 class="white"><i class="fa fa-star-o"></i><a href="{$ad_wz['url']}">{$ad_wz['activityName']}</a></h2>
+				<p><a href="{$ad_wz['url']}">{$ad_wz['title']}</a></p>
+				
+			</div>
+			<div>
+			    <if condition="$wz_flag neq 1">
+				<p>活动时间：<span class="yellows">{$ad_wz['startTime']}~{$ad_wz['endTime']}</span></p>
+				<else />
+				<p>活动时间：<span class="yellows">{即日起~{$ad_wz['endTime']}</span></p>
+				</if>
+				
+				<p class="xhxx_txt"><a href="{$ad_wz['url']}">{$ad_wz['contents']}</a></p>
+				
+				<p class="mt20">*本活动最终解释权归天道教育所有</p>
+			</div>
+		</div>
+	</div>
+	<!-- 线上活动 -->
+	<h2 class="titName">线上活动</h2>
+	<div class="xq_1 xq_1111">
+		<ul class="list_hd clear"  id="online">
+		    <volist name="ad_online" id="vo">
+			<li><a href="{$vo['url']}"><i><img src="{$Think.config.URL_ROOT}{$vo['img']}" alt="{$vo['title']}" /></i><div class="pp"><p class="p_1">{$vo['title']}</p><p class="p_2">{$vo['contents']|msubstr=0,18,'GB2312'}</p></div></i></a>
+			</li>
+			</volist>
+		</ul>
+		<p class="p_center"  id="on" data="{$on_id}">更多线上活动</p>
+	</div>
+	<!-- 线下活动 -->
+	<h2 class="titName">线下活动</h2>
+	<div class="xq_1 xq_1111" style="margin-bottom:55px">
+		<ul class="list_hd clear" id="offline">
+		    <volist name="ad_offline" id="vo">
+			<li><a href="{$vo['url']}"><i><img src="{$Think.config.URL_ROOT}{$vo['img']}" alt="{$vo['title']}" /></i><div class="pp"><p class="p_1">{$vo['title']}</p><p class="p_2">{$vo['contents']|msubstr=0,18,'GB2312'}</p></div></i></a>
+			</li>
+			</volist>
+		</ul>
+		<p class="p_center" id="offl" data="{$off_id}">更多线下活动</p>
+	</div>
+	<div class="header-clearsss"></div>
+   
+    <include file="Public:footer1_1" />
+	<include file="Public:kefu" />
+	<div class="menu-wrapper-background"></div>
+
+	<script type="text/javascript">
+		(function($){
+			$(".phoness").on("tap",function(){
+				$(this).addClass("on1");
+			});
+			
+			$(".list_hd li").on("tap",function(){
+				$(this).addClass("onnn").siblings().removeClass("onnn");
+			});
+			
+			$(".p_center").on("tap",function(){
+				$(this).addClass("onnss");
+				var _this=$(this);
+				setTimeout(function(){
+					_this.removeClass("onnss");
+				},50);
+			});
+			$(".phone").on("tap",function(e){
+				e.stopPropagation();
+				if($(".share").is(":visible")){
+					$(".share").slideUp(250);
+					$(this).css("color","#fff");
+				}else{
+					$(".share").slideDown(250);
+					$(this).css("color","#fff661");		
+				}
+			});
+			//更多线上活动
+			$("#on").click(function(){
+				var id = $("#on").attr('data');
+				$.get("/index.php/Activity/online_all/",{id:id},function(re_data){
+					$('#online').html(re_data);
+					$("#on").remove();
+				});
+			})
+			//更多线下活动
+			 $("#offl").click(function(){
+				var id = $("#offl").attr('data');
+
+				$.get("/index.php/Activity/offline_all/",{id:id},function(re_data){
+					$('#offline').html(re_data);
+					$("#offl").remove();
+				});
+			}) 
+			
+			
+		})(jQuery);
+	</script>
+
+</body>
+</html>

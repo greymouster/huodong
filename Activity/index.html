@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{$tdk['title']}</title>
+    <meta name="keywords" content="{$tdk['keywords']}"/>
+    <meta name="description" content="{$tdk['description']}" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="__PUBLIC__/styles/style.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/framework.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/swipebox.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/huodongindex.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/styles/styleXi.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body style="background: #eee;">
+<!--加载提示-->
+<script type="text/javascript" src="__PUBLIC__/scripts/loading.js"></script>
+<div class="header clearfix">
+	    <a href="http://m.tiandaoedu.com/" class="header-navigation show-navigation"><i class="bags"></i></a>
+		<h2>活动</h2>
+		<!--<a href="tel:400-012-0038" class="a_r a_rs a_rssss">400-012-0038</a>-->
+		<if condition="$Think.session.user_id neq '' ">
+		<a href="{$Think.config.URL_ROOT}/u/dl.html" ><img src="{$Think.config.URL_ROOT}/Public/images/denglu.png" style="height:17px; position: absolute;right: 15px;top: 13px;"/></a>
+        <else />
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" style="margin:10px 5px;color:white;">登录/注册</a>
+        </if>	
+			
+	</div>
+<div class="h43"></div>
+<!--banner-->
+<div class="slider-container">
+    <div class="homepage-slider" data-snap-ignore="true">
+        <foreach name="pic" item="vo">
+		<div>
+            <a href="{$vo['ad_link']}"><img src="{$vo['ad_pic']}" class="responsive-image" alt="{$vo['ad_name']}"></a>
+        </div>
+		</foreach>
+    </div>
+</div>
+<!--类型--->
+<ul class="gallery round-thumb homepage-gallery gallery_1" id="listLis">
+    <foreach name="catpic" item="val">
+    <li style="width:24%;"><a  href="{$val['ad_link']}"><span><img src="{$val['ad_pic']}" style="width:100%!important"></span><p>{$val['ad_name']}</p></a></li>
+    </foreach>
+	
+    <li style="width:24%;"><a  href="{$Think.config.URL_ROOT}/tdhd/all-all-all-all/" title=""><span><img src="__PUBLIC__/images/huodong/images/h4.png" style="width:100%!important"></span><p>更多活动</p></a></li>
+</ul>
+<h2 class="titName">小道推荐</h2>
+<div class="swiper-container">
+    <div class="swiper-wrapper" style="width: 1760px; transition-duration: 0.3s; -webkit-transition-duration: 0.3s; transform: translate3d(0px, 0px, 0px); -webkit-transform: translate3d(0px, 0px, 0px); margin-left: 0.8em; background: #fff; margin-bottom: 10px; overflow: hidden;">
+        <foreach name="recompic" item="vv">
+		<div class="swiper-slide swiper-slide-visible" style="float: left">
+            <a href="{$vv['ad_link']}" alt="{$vv['ad_name']}"><img src="{$vv['ad_pic']}" ></a>
+        </div>
+		</foreach>
+    </div>
+
+</div>
+<a href="{$hotPic[0]['ad_link']}" alt="{$hotPic[0]['ad_name']}"><img src="{$hotPic[0]['ad_pic']}" style="width:100%;margin-bottom:7px;" ></a>
+<!--热门活动-->
+<volist name="actList" id="vo" offset="0" length='10'>
+ <if condition="$vo.act_name neq '' ">
+    <div class="msBox msBoxLast">
+    <div class="content-heading pb0">
+        <img src="{$vo.act_file}" class="responsive-image">
+        <h3><a href="{$Think.config.URL_ROOT}/tdhd/{$vo.act_id}.html">{$vo.act_name}<i style=" float: right; color: #666; font-size: 1.2em;">&gt;</i></a></h3>
+    </div>
+    <div class="content content_indexx">
+        <div class="allTxt1">
+            <div class="container no-bottom dIcon dIcons">
+                <dl>
+				   
+                    <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_01.png" alt="" /></dt>
+                    
+					<dd class="dsss">
+                        <p class="p_add">{$vo.act_start_date}-{$vo.act_end_date} 每天 {$vo.act_start_time}-{$vo.act_end_time}</p>
+                    </dd>
+					<!--<if condition="$vo.act_time_status eq 0">
+					<dd class="dsss">
+                        <p class="p_add">{$vo.act_start_date} {$vo.act_start_time}</p>
+                    </dd>
+					</if>
+					<if condition="$vo.act_time_status eq 1">
+					<dd class="dsss">
+                        <p class="p_add">{$vo.act_start_date}-{$vo.act_end_date} 每天 {$vo.act_start_time}-{$vo.act_end_time}</p>
+                    </dd>
+					</if>
+					<if condition="$vo.act_time_status eq 2">
+					<dd class="dsss">
+                        <p class="p_add">{$vo.act_start_date}-{$vo.act_end_date} {$vo.act_week}  {$vo.act_start_time}-{$vo.act_end_time}</p>
+                    </dd>
+					</if>-->
+                </dl>
+                <dl>
+                    <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_02.png" alt="" /></dt>
+                    <dd class="dsss">
+					    <if condition="$vo.act_cost eq 0">
+                        <p class="lastP p_add"><span class="time">免费</span></p>
+						<else />
+						<p class="lastP p_add"><span class="time" style="color:black;">{$vo.act_cost}</span></p>
+						</if>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="thumb-left d2"><img src="__PUBLIC__/images/huodong/images/dIcon_03.png" alt="" /></dt>
+                    <dd class="bdnone">
+                        <strong>{$vo.place_name}</strong>
+                        <p class="lastP p_add">{$vo.spec_address}</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div> 
+ </if>
+
+</volist>
+
+<div class="header-clears header-clearsss"></div>
+<!-- 底部--> 
+<include file="Public:footer1_1" />
+<include file="Public:kefu" />
+<script type="text/javascript" src="__PUBLIC__/scripts/framework.plugins.js"></script>
+<script type="text/javascript" src="__PUBLIC__/scripts/customs.js"></script>
+<script type="text/javascript" src="__PUBLIC__/scripts/swiper.jquery.min.js"></script>
+<script type="text/javascript">
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        paginationClickable: true,
+        slidesPerView: 3
+    })
+</script>
+<script type="text/javascript">
+    //li背景色
+    (function ($) {
+        $(document).on('tap','#listLis li',function(){
+            $('#listLis li').removeClass('onnn');
+            $(this).addClass('onnn')
+        });
+        $(".footer li").on("tap",function(){
+            var index = $(this).index();
+            $(this).addClass("curPage").siblings().removeClass("curPage");
+        });
+        $(".p_center").on("tap",function(){
+            $(this).addClass("onnss");
+            var _this=$(this);
+            setTimeout(function(){
+                _this.removeClass("onnss");
+            },50);
+        });
+        setImgSize();
+        //设置图片比例为16:9
+        function setImgSize(){
+            $(".gallery_3 li").each(function(){
+                var imgWidth = $(this).find("img").width(),
+                        imgHeight = (imgWidth*9) /16;
+                $(this).find("img").height(imgHeight);
+            });
+        }
+		
+		
+    })(jQuery);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

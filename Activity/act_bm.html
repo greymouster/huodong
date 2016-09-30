@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>活动报名</title>
+
+    <link href="__PUBLIC__/styles/style.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/styles/huodongindex.css" rel="stylesheet" type="text/css" />
+	<link href="__PUBLIC__/ucenter/plugins/layer/need/layer.css" rel="stylesheet" type="text/css" />
+	<link href="__PUBLIC__/styles/form-style.css" rel="stylesheet" type="text/css">
+	<link href="__PUBLIC__/styles/form-base.css" rel="stylesheet" type="text/css">
+	
+
+</head>
+<body>
+
+
+<div class="header clearfix">
+    <a href="javascript:;" onclick="window.history.go(-1);" class="header-navigation show-navigation"><i class="bags"></i></a>
+    <h2 class="first">活动报名</h2>
+    <!--<a href="#" class="header-navigation hhh hhhs phoneNums" ><img src="__PUBLIC__/images/huodong/images/ht.png" style="width: 70%; margin-top: 0.6em;"> </a>-->
+    <if condition="$Think.session.user_id neq '' ">
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" ><img src="{$Think.config.URL_ROOT}/Public/images/denglu.png" style="height:17px; position: absolute;right: 15px;top: 13px;"/></a>
+        <else />
+        <a href="{$Think.config.URL_ROOT}/u/dl.html" style="margin:10px 5px;color:white;">登录/注册</a>
+    </if>
+</div>
+<div class="h43"></div>
+<div class="contain">
+    <form onsubmit="return false;">
+	<input type="hidden" name="act_id" value="{$Think.get.act_id}">
+        <div class="form-group">
+            <label>姓名</label>
+            <input type="text" name="user_name" placeholder="请输入您的姓名" />
+             
+		</div>
+        <div class="form-group">
+            <label>手机</label>
+            <input type="tel" name="phone" placeholder="请输入您的手机号" />
+        </div>
+		<div class="form-group">
+            <label>邮箱</label>
+			
+            <input type="email" name="email" placeholder="请输入您的邮箱" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="提交">
+        </div>
+    </form>
+</div>
+<!-- 底部-->
+<include file="Public:footer1_1" />
+<include file="Public:kefu" />
+</body>
+<script type="text/javascript" src="__PUBLIC__/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/plugins/layer/layer.js"></script>
+
+<script>
+    (function ($, window) {
+        window.addEventListener('DOMContentLoaded', function () {
+            var shuping = 'onorientationchange' in window ? 'orientationchange' : 'resize';
+            var timer = null;
+
+            //设置字体
+            function setFontSize() {
+                var w = document.documentElement.clientWidth || document.body.clientWidth;
+                document.documentElement.style.fontSize = parseInt(100 * w / 640) + 'px';
+            }
+
+            setFontSize();
+            window.addEventListener(shuping, function () {
+                clearTimeout(timer);
+                timer = setTimeout(setFontSize, 300);
+            }, false);
+        }, false);
+    })($, window);
+	$("input[type='submit']").click(function(){
+        var data = $("form").serialize();
+		var actId = {$Think.get.act_id};
+		$.ajax({
+		    url : "{:U('Activity/submitFormData')}",
+			data : data,
+			type : 'POST',
+			dataType : 'JSON',
+			success : function(data){
+			    if(data.status >0){
+				    layer.open({
+					    shadeClose: true,
+				        content: data.msg,
+						time : 2,
+						skin : 'msg'
+				    })
+					setTimeout(function(){
+					    window.location.href ="__ROOT__/tdhd/"+actId+'.html';
+					
+					},1500);
+				}else if(data.status == 0){
+				     layer.open({
+					     content : data.msg,
+						 time :2 ,
+						 skin : 'msg'
+					   
+					 })
+					 setTimeout(function(){
+					    window.location.href ="__ROOT__/u/dl.html";
+					 })
+				}else{
+				   
+					layer.open({
+				        content: data.msg,
+						time : 2,
+						skin : 'msg'
+				    })
+				}
+			}
+		});
+	});
+</script>
+</html>

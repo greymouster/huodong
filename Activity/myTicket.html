@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的入场券</title>
+
+    <link href="__PUBLIC__/styles/style.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/styles/huodongindex.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/styles/styleXi.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/styles/jifen.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!--加载提示-->
+
+<!--右上弹层内容-->
+<!--头部左上-->
+<div class="header xq_header">
+    <a href="#" class="back"></a>
+    <h2>我的入场券</h2>
+    <a href="tel:400-012-0038" class="header-navigation hhh phs"><i class="phoness fl"></i></a>
+    <a href="javascript:;" class="header-navigation show-navigation hhh hhhBtn"><i class="fa show-navigations"></i></a>
+</div>
+<div class="h43"></div>
+<!--banner-->
+<div class="juan">
+    <p>{$val.act_name}</p>
+    <img src="{$QR}" class="cm">
+</div>
+<div class="msBox msBoxLast">
+<div class="content content_indexx">
+    <div class="allTxt1">
+        <div class="container no-bottom dIcon dIcons">
+           <dl>
+                <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_00.png" alt="" /></dt>
+                <dd class="dsss">
+                    <p class="p_add">{$val.act_charge_name}</p>
+                </dd>
+            </dl>
+			 
+            <dl>
+                <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_01.png" alt="" /></dt>
+                <dd class="dsss">
+					<p class="p_add">{$val.act_start_date}-{$val.act_end_date} 每天 {$val.act_start_time}-{$val.act_end_time}</p>
+				</dd>
+				<!--<if condition="$val.act_time_status eq 0">
+					<dd class="dsss">
+						<p class="p_add">{$val.act_start_date} {$val.act_start_time}</p>
+					</dd>
+					</if>
+					<if condition="$val.act_time_status eq 1">
+					<dd class="dsss">
+						<p class="p_add">{$val.act_start_date}-{$val.act_end_date} 每天 {$val.act_start_time}-{$val.act_end_time}</p>
+					</dd>
+					</if>
+					<if condition="$val.act_time_status eq 2">
+					<dd class="dsss">
+						<p class="p_add">{$val.act_start_date}-{$val.act_end_date} {$val.act_week}  {$val.act_start_time}-{$val.act_end_time}</p>
+					</dd>
+				</if>-->
+            </dl>
+            <dl>
+                <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_02.png" alt="" /></dt>
+                <dd class="dsss">
+                     <if condition="$val['act_cost'] eq 0">
+						<p class="lastP p_add"><span class="time">免费</span></p>
+						<else />
+						<p class="lastP p_add"><span class="time" style="color:black;">{$val['act_cost']}</span></p>
+					</if>
+		</dd>
+            </dl>
+            <dl>
+                <dt class="thumb-left d2"><img src="__PUBLIC__/images/huodong/images/dIcon_03.png" alt="" /></dt>
+                <dd class="bdnone">
+                         <strong>{$val['place_name']}</strong>
+                         <p class="lastP p_add">{$val['spec_address']}</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+</div>
+<!-- 分享 -->
+<div class="share">
+    <div class="shareIcon">
+        <div class="d_box">
+            <div class="bdsharebuttonbox">
+                <a href="#" class="bds_tqq" data-cmd="bds_more" title="分享到朋友圈"><p>朋友圈</p></a>
+                <a href="#" class="bds_weixin" data-cmd="weixin" title="分享微信好友"><p>微信好友</p></a>
+                <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"><p>QQ好友</p></a>
+            </div>
+            <script>
+                window._bd_share_config={
+                    "common":{
+                        "bdSnsKey":{},
+                        "bdText":"",
+                        "bdMini":"2",
+                        "bdMiniList":false,
+						
+                        "bdPic":"",
+                        "bdStyle":"1",
+                        "bdSize":"32"
+                    },
+                    "share":{
+                        "bdSize":32
+                    }
+                };
+                with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        </div>
+    </div>
+</div>
+<div class="menu-wrapper-background"></div>
+<div class="header-clears"></div>
+<!--  底部-->
+<div class="bottom">
+    <a href="__ROOT__/tdhd/{$val.act_id}.html">查看活动详情</a>
+</div>
+<div class="header-clears header-clearsss"></div>
+<!-- 底部-->
+<include file="Public:footer1_1" />
+<include file="Public:kefu" />
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(window).load(function() {
+            $("#status").fadeOut();
+            $("#preloader").delay(400).fadeOut("slow");
+        });
+        //点击分享
+        $(".hhhBtn").on("click",function(e){
+            e.stopPropagation();
+            if($(".share").is(":visible")){
+                $(".share").slideUp(250);
+                $(this).css("color","#fff");
+            }else{
+                $(".share").slideDown(250);
+                $(this).css("color","#fff661");
+            }
+        });
+    });
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?e9b1d6d81df83a6af9e328d0705ec432";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?9cbc6afe6436ce82c91f48d408a143e3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/zepto.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/framework.plugins.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/customs.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/load.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ucenter/scripts/swiper.jquery.min.js"></script>
+</body>
+</html>

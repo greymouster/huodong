@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+	<title>{$tdk['title']}</title>
+    <meta name="keywords" content="{$tdk['keywords']}"/>
+    <meta name="description" content="{$tdk['description']}" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/huodongindex.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/styles/yxk.css"/>
+
+</head>
+<body style="background:#eee;overflow-x:hidden;">
+<!--加载提示-->
+<script type="text/javascript" src="__PUBLIC__/scripts/loading.js"></script>
+
+<!--头部左上-->
+<div class="header clearfix">
+     <a href="javascript:;" onclick="window.history.go(-1);"><i class="fa"></i></a>
+    <h2>活动</h2>
+    <!--<a href="#" class="a_rsss"><img src="__PUBLIC__/images/huodong/images/ht.png" style="width:70%;"> </a>-->
+    <if condition="$Think.session.user_id neq '' ">
+	<a href="{$Think.config.URL_ROOT}/u/dl.html" ><img src="{$Think.config.URL_ROOT}/Public/images/denglu.png" style="height:17px; position: absolute;right: 15px;top: 13px;"/></a>
+	<else />
+	<a href="{$Think.config.URL_ROOT}/u/dl.html" style="margin:10px 5px;color:white;">登录/注册</a>
+	</if>
+</div>
+<div class="h43"></div>
+<div class="list_succ">
+    <ul class="list_1 clearfix">
+        <li id="city" data="{$placeName}">
+            <if condition="$placeName neq ''">{$cityData['city'][$placeName]}<else />按城市</if>
+        </li>
+        <li id='date' data="{$time}">
+            <if condition="$time neq ''">{$time}<else />按时间</if>
+        </li>
+        <li id="cate" data="{$catName}">
+            <if condition="$catName neq ''">{$cate['cate'][$catName]}<else />按类型</if>
+        </li>
+        <li id="more" data="{$sort}">更多排序</li>
+		<input id="test" name="test" style="display:none" type="text">
+    </ul>
+</div>
+<div class="licont licont1">
+    <ul>
+	    <foreach name="cityData" item="vo">
+        <!--<li data-place-id="{$vo['id']}" class="place-click">{$vo['place_name']}</li>-->
+            <li class="search_act" data="1_{$vo['place_name']}"><a href="javascript:;">{$vo['place_name']}</li>
+		</foreach>
+    </ul>
+    <ul>
+        <li class="search_act" data="" id="date_click"></li>
+    </ul>
+    <ul>
+	    <foreach name="cate" item="vo">
+        <li class="search_act" data="2_{$vo['cat_name']}"><a href="javascript:;"  >{$vo['cat_name']}</a></li>
+		</foreach>
+    </ul>
+    <!--<ul class="zhuanye" data-title="zhuanye">-->
+        <!--<li><a href="#">全部</a></li>-->
+        <!--<li data-index="0"><a href="#">商科</a></li>-->
+        <!--<li data-index="1"><a href="#">理科</a></li>-->
+        <!--<li data-index="2"><a href="#">工科</a></li>-->
+        <!--<li data-index="3"><a href="#">文科</a></li>-->
+        <!--<li data-index="4"><a href="#">艺术</a></li>-->
+    <!--</ul>-->
+    <ul style="color:#888;">
+        <li class="search_act" data="4_默认排序">默认排序</li>
+        <li class="search_act" data="4_价格从低到高">价格从低到高</li>
+        <li class="search_act" data="4_价格从高到低">价格从高到低</li>
+        <li class="search_act" data="4_最新上线">最新上线</li>
+        <li class="search_act" data="4_最近开始">最近开始</li>
+    </ul>
+</div>
+<!--<div class="licont licont2">-->
+    <!--<ul>-->
+        <!--<li><a href="#">金融</a></li>-->
+        <!--<li><a href="#">会计</a></li>-->
+        <!--<li><a href="#">金工金数</a></li>-->
+        <!--<li><a href="#">管理信息系统</a></li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li><a href="#">经济学</a></li>-->
+        <!--<li><a href="#">统计与精算</a></li>-->
+        <!--<li><a href="#">公共卫生</a></li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li><a href="#">计算机</a></li>-->
+        <!--<li><a href="#">电子工程</a></li>-->
+        <!--<li><a href="#">工业工程</a></li>-->
+        <!--<li><a href="#">机械工程</a></li>-->
+        <!--<li><a href="#">环境工程</a></li>-->
+        <!--<li><a href="#">土木工程</a></li>-->
+        <!--<li><a href="#">材料工程</a></li>-->
+        <!--<li><a href="#">化学工程</a></li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li><a href="#">法学</a></li>-->
+        <!--<li><a href="#">公共管理</a></li>-->
+        <!--<li><a href="#">传媒</a></li>-->
+        <!--<li><a href="#">教育</a></li>-->
+    <!--</ul>-->
+    <!--<ul>-->
+        <!--<li><a href="#">艺术</a></li>-->
+        <!--<li><a href="#">建筑、景观与城市规划</a></li>-->
+    <!--</ul>-->
+</div>
+
+<!-------qie换内容------->
+<div class="msContent">
+<foreach name="actList" item="val">
+   <if condition="$val.act_name neq '' ">
+       <div class="msBox msBoxLast">
+    <div class="content-heading pb0">
+        <img src="{$val['act_file']}" class="responsive-image">
+        <h3><a href="{$Think.config.URL_ROOT}/tdhd/{$val.act_id}.html">{$val['act_name']}<i style=" float: right; color: #666; font-size: 1.2em;">&gt;</i></a></h3>
+    </div>
+    <div class="content content_indexx">
+        <div class="allTxt1">
+            <div class="container no-bottom dIcon dIcons">
+                <dl>
+                    <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_01.png" alt="" /></dt>
+                   <!-- <dd class="dsss">
+                        <p class="p_add">{$val['act_start_date']}-{$val['act_end_date']} 每天 {$val['act_start_time']}-{$val['act_end_time']}</p>
+                    </dd>-->
+					<if condition="$val.act_time_status eq 0">
+						<dd class="dsss">
+							<p class="p_add">{$val.act_start_date} {$val.act_start_time}</p>
+						</dd>
+						</if>
+						<if condition="$val.act_time_status eq 1">
+						<dd class="dsss">
+							<p class="p_add">{$val.act_start_date}-{$val.act_end_date} 每天 {$val.act_start_time}-{$val.act_end_time}</p>
+						</dd>
+						</if>
+						<if condition="$val.act_time_status eq 2">
+						<dd class="dsss">
+							<p class="p_add">{$val.act_start_date}-{$val.act_end_date} {$val.act_week}  {$val.act_start_time}-{$val.act_end_time}</p>
+						</dd>
+					</if>
+                </dl>
+                <dl>
+                    <dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_02.png" alt="" /></dt>
+                    <dd class="dsss">
+					    <if condition="$val['act_cost'] eq 0">
+                        <p class="lastP p_add"><span class="time">免费</span></p>
+						<else />
+						 <p class="lastP p_add"><span class="time" style="color:black;">{$val['act_cost']}</span></p>
+						</if>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="thumb-left d2"><img src="__PUBLIC__/images/huodong/images/dIcon_03.png" alt="" /></dt>
+                    <dd class="bdnone">
+                        <strong>{$val['place_name']}</strong>
+                        <p class="lastP p_add">{$val['spec_address']}</p>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+   </if>
+</foreach>
+
+</div>
+<div class="header-clears header-clearsss"></div>
+<!-- 底部-->
+<include file="Public:footer1_1" />
+<include file="Public:kefu" />
+<script src="{$Think.config.URL_ROOT}/Public/scripts/getpinyin.js"></script>
+
+<!--时间日期插件-->
+<link rel="stylesheet" href="__PUBLIC__/styles/mobiscroll_date.css">
+<link rel="stylesheet" href="__PUBLIC__/styles/mobiscroll.css">
+<script src="__PUBLIC__/scripts/mobiscroll_date.js"></script>
+<script src="__PUBLIC__/scripts/mobiscroll.js"></script>
+<!--时间日期插件end-->
+<script type="text/javascript">
+    (function ($) {
+		$(document).on("click",function(e){
+            $(".licont1 ul").slideUp(function(){
+                $(".licont2 ul").css({"left":100+"%"});
+            });
+            $(".list_1 li").removeClass();
+        });
+        $(".list_1 li").on("click",function(e){
+            e.stopPropagation();
+        });
+        $(".licont2 ul").css("left","100%");
+        $(".list_1  li").on("click",function(){
+            if($(this).hasClass("cur1")){
+                $(this).removeClass();
+                $(".licont1 ul").slideUp();
+                $(".licont2 ul").animate({"left":"100%"},300);
+            }else{
+                var ind=$(this).index();
+                $(this).addClass("cur1").siblings().removeClass();
+				if(ind != 3){
+                    $(".licont1 ul").eq(ind).slideDown().siblings().slideUp();
+                    $(".licont2 ul").css("left","100%");
+                    $('.licont').height("auto");
+                }else{
+                    $(".licont1 ul").eq(ind).slideDown(function(){
+                        $(".zhuanye li").on("click",function(e){
+                            e.stopPropagation();
+                            var that=$(this);
+                            that.parent().stop();
+                            var curIndex=that.data("index");
+                            $(".licont2 ul").eq(curIndex).stop().animate({"left":"50%"},300).siblings().stop().animate({"left":"100%"},300);
+                            var mheight=$(".licont2 ul").eq(curIndex).height();
+                            var minHeight=$("ul.zhuanye").height();
+                            if(mheight<minHeight)mheight=minHeight;
+                            mheight=mheight;
+                            $(".licont2 ul").eq(curIndex).height(mheight);
+                        });
+                    }).siblings().slideUp();
+                }
+            }
+
+        });
+        $(".licont2 li").on("click",function(e){
+            e.stopPropagation();
+            $(".licont2 ul").stop().animate({"left":"100%"},300);
+            $(".zhuanye").slideUp();
+            $(".list_1 li").removeClass();
+        });
+        $(".licont li:last").off("click");
+    })(jQuery);
+
+    $(function () {
+        var currYear = (new Date()).getFullYear();
+        var opt={};
+        opt.date = {preset : 'date'};
+        opt.datetime = {preset : 'datetime'};
+        opt.time = {preset : 'time'};
+        opt.default = {
+            theme: 'android-ics light', //皮肤样式
+            display: 'modal', //显示方式
+            mode: 'scroller', //日期选择模式
+            dateFormat: 'yyyy-mm-dd',
+            lang: 'zh',
+            showNow: true,
+            nowText: "今天",
+            startYear: currYear - 50, //开始年份
+            endYear: currYear + 10, //结束年份
+            onSelect:function(valueText,inst){
+                var date = $("#date_click").attr("data","3_"+valueText);
+                if(date){
+                   $("#date_click").click();
+                }
+            }
+        };
+        $("#test").mobiscroll($.extend(opt['date'], opt['default']));
+        $("#date").on("click",function(){
+            $("#test").focus();
+        })
+
+    });
+
+    //筛选js
+    $(function(){
+        $(".search_act").click(function(){
+             var data = $(this).attr("data").split('_');
+             var str = makePy(data[1])[0].toLocaleLowerCase();
+			 switch(data[0]){
+				case "1":
+					$("#city").attr("data",str);
+                    $("#city").text(data[1]);
+					break;
+				case "2":
+					$("#cate").attr("data",str);
+                    $("#cate").text(data[1]);
+                    break;
+                 case "3":
+                    var date1 = data[1].split('-');
+                    $("#date").attr("data",date1[0]+date1[1]+date1[2]);
+                    $("#date").text(data[1])
+					break;
+			    case "4":
+				    $("#more").attr("data",str);
+				    break;
+				default:
+                    break;
+			}
+			var city = $("#city").attr('data')?$("#city").attr('data'):'all';
+            var catName = $("#cate").attr('data')?$("#cate").attr('data'):'all';
+            var time = $("#date").attr('data')?$("#date").attr('data'):'all';
+			var more = $("#more").attr('data')?$("#more").attr('data'):'all';
+            location.href ="/tdhd/"+city+'-'+time+'-'+catName+'-'+more+'/';
+        });
+    })
+
+     $(function(){
+	    $(".act_sort li").click(function(){
+		    var data = $(this).attr('data-attr');
+			$.ajax({
+			    url : "{:U('Activity/actList')}",
+				type : 'POST',
+				data : {data:data},
+				dataType :'JSON',
+				success :function(data){
+				
+				}
+			});
+		});
+	 
+	 })
+//    $(function(){
+//	    $(".place-click").click(function(){
+//		    var placeId = $(this).attr("data-place-id");
+//			$.ajax({
+//			    url : "{:U('Activity/ajaxGetData')}",
+//				type : "POST",
+//				data:{placeId:placeId},
+//				dataType : "json",
+//				success :function(data){
+//				    var str = '';
+//					if(data.status == 1){
+//					   $.each(data.data,function(index,items){
+//							str += '<div class="msBox msBoxLast"><div class="content-heading pb0">';
+//							str += '<img src="'+items.act_file+'" class="responsive-image">';
+//							str += '<h3><a href="#">'+items.act_name+'<i style=" float: right; color: #666; font-size: 1.2em;">&gt;</i></a></h3>';
+//							str += '</div>';
+//							str += '<div class="content content_indexx"><div class="allTxt1"><div class="container no-bottom dIcon dIcons">';
+//							str += '<dl>';
+//							str += '<dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_01.png" alt="" /></dt>';
+//							str += '<dd class="dsss">';
+//							if(items.act_week>0){
+//							   str += '<p class="p_add">'+items.act_start_date+'-'+items.act_end_date+items.act_week+items.act_start_time+'-'+items.act_end_time+'</p>';
+//							}else{
+//							   str += '<p class="p_add">'+items.act_start_date+'-'+items.act_end_date+' 每天 '+items.act_start_time+'-'+items.act_end_time+'</p>';
+//							}
+//							str += '</dd></dl><dl>';
+//							str += '<dt class="thumb-left"><img src="__PUBLIC__/images/huodong/images/dIcon_02.png" alt="" /></dt>';
+//							str += '<dd class="dsss">';
+//							if(items.act_cost == 0){
+//							   str += '<p class="lastP p_add"><span class="time">免费</span></p>';
+//							}else{
+//							   str += '<p class="lastP p_add"><span class="time">'+items.act_cost+'</span></p>';
+//							}
+//							str += '</dd></dl><dl>';
+//							str += '<dt class="thumb-left d2"><img src="__PUBLIC__/images/huodong/images/dIcon_03.png" alt="" /></dt>';
+//							str += '<dd class="bdnone">';
+//							str += '<strong>'+items.place_name+'</strong>';
+//							str += '<p class="lastP p_add">'+items.spec_address+'</p>';
+//							str += '</dd></dl></div></div></div></div>';
+//						});
+//						$(".msContent").empty().html(str);
+//					}else{
+//					    $(".msContent").html('');
+//					}
+//				}
+//			});
+//		});
+//	})
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
